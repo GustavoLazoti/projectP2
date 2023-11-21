@@ -132,21 +132,11 @@ public class DLL {
     public String toString() {
         StringBuilder sb = new StringBuilder();
         int qtde = 0;
-        sb.append("\n[Lista]\n");
-        sb.append("L: [ ");
-
+        
         for(Node pAnda = this.head; qtde != this.count; pAnda = pAnda.getRight()) {
-            sb.append("(" + pAnda.getKey() + ", " + pAnda.getData() + ") ");
+            sb.append(pAnda.getKey() + " " + pAnda.getData() + "\n");
             ++qtde;
         }
-
-        sb.append("]\n");
-        sb.append("Qtde.: " + this.count);
-        if (this.count != 0) {
-            sb.append("\nPrimeiro: (" + this.head.getKey() + ", " + this.head.getData() + ")");
-        }
-
-        sb.append("");
         return sb.toString();
     }
 }
