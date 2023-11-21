@@ -15,7 +15,7 @@ public class MenuInterface
         DLL textoMarcado = new DLL();
         while(on == 1){
         String escolha = scanner.nextLine();
-        if(escolha.toLowerCase().startsWith(":h"))
+       if(escolha.toLowerCase().startsWith(":h"))
         {
             help();
         } else if (escolha.toLowerCase().startsWith(":q!"))
@@ -36,7 +36,7 @@ public class MenuInterface
             escolha = (String) escolha.subSequence(3,escolha.length());
             fonte = lerArquivo(escolha);
             temp = fonte;
-        } else if (escolha.toLowerCase().startsWith(":s"))
+        } else if (escolha.toLowerCase().startsWith(":s") && escolha.toLowerCase().endsWith(":s"))
         {
             if (temp.isEmpty()) {
                 System.out.println("O arquivo não foi aberto ainda.");
@@ -118,6 +118,28 @@ public class MenuInterface
         }else if (escolha.toLowerCase().startsWith(":c")) 
         {
             temp.cortarMarcado(textoMarcado);
+        }else if (escolha.toLowerCase().startsWith(":s")) 
+        {
+            String trimmedInput = escolha.substring(2).trim();
+            String[] parts = trimmedInput.split("\\s+");
+            if (parts.length >= 2) {
+                int linIni = Integer.parseInt(parts[0]);
+                int linFim = Integer.parseInt(parts[1]);
+                temp.toString2(linIni, linFim);
+            } else {
+                System.err.println("Entrada inválida. Certifique-se de incluir LinIni e LinFim.");
+            }
+        }else if (escolha.toLowerCase().startsWith(":i")) 
+        {
+             String trimmedInput = escolha.substring(2).trim();
+             String[] parts = trimmedInput.split("\\s+");
+            if (parts.length >= 2) {
+                int linIni = Integer.parseInt(parts[0]);
+                String linFim = (parts[1]);
+                temp.posInsert(linIni, linFim);
+            } else {
+                System.err.println("Entrada inválida. Certifique-se de incluir LinIni e LinFim.");
+            }
         }else
         {
             System.out.println("Não detectei sua escolha. Tente utilizar :help para conhecer os comandos.\n");

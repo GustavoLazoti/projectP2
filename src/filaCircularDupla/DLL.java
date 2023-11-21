@@ -233,7 +233,24 @@ public class DLL {
         System.out.println("O texto foi marcado!");
         return textoMarcado;
     }
+    public void toString2(int LinIni, int LinFim)
+    {
+        if (LinIni <= 0 || LinFim <= 0 || LinIni > LinFim || LinFim > this.getCount()) {
+            System.err.println("Intervalo inválido. Verifique as linhas e tente novamente.");
+            return;
+        }
+        DLL textoMarcado = new DLL();
 
+        Node pAnda = this.head;
+        for (int i = 1; i < LinIni; i++) {
+            pAnda = pAnda.getRight();
+        }
+        for (int i = LinIni; i <= LinFim; i++) {
+            textoMarcado.insertAscending(i, pAnda.getData());
+            pAnda = pAnda.getRight();
+        }
+        System.out.println(textoMarcado);
+    }
     public String toString() {
         StringBuilder sb = new StringBuilder();
         int qtde = 0;
@@ -243,6 +260,29 @@ public class DLL {
             ++qtde;
         }
         return sb.toString();
+    }
+    public void posInsert(int posLin, String conteúdo)
+    {
+        Node pAnda = this.head;
+        while (pAnda.getKey() != posLin) {
+            pAnda = pAnda.getRight();
+        }
+        Node nova = new Node();
+        nova.setData(conteúdo);
+        if (pAnda == this.head) 
+        {
+        nova.setLeft(this.head.getLeft());
+        nova.setRight(this.head);
+        this.head.setLeft(nova);
+        nova.setKey(0);
+        }else
+        {
+            nova.setRight(pAnda.getRight());
+            nova.setLeft(pAnda.getLeft());
+            pAnda.setLeft(nova);
+            nova.setKey(pAnda.getKey()-1);
+        }
+        System.out.println("Linha Inserida");
     }
     public void rearrangeNodesOrder() {
         Node pAnda = this.head;
