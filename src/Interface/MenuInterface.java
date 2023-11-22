@@ -136,7 +136,7 @@ public class MenuInterface
             if (parts.length >= 2) {
                 int linIni = Integer.parseInt(parts[0]);
                 String linFim = (parts[1]);
-                temp.posInsert(linIni, linFim);
+                temp.insertAscending(linIni, linFim);
             } else {
                 System.err.println("Entrada inválida. Certifique-se de incluir LinIni e LinFim.");
             }
